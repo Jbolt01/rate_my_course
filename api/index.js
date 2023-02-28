@@ -7,6 +7,12 @@ app.get('/listCourses', function(req, res) {
         res.end( data )
     })
 })
+app.get('/getCourse', function(req, res) {
+    fs.readFile(__dirname + '/' + 'courses.json', 'utf8', function (err,data) {
+        console.log( data )
+        res.end( data )
+    })
+})
 app.post('/addCourse', function (req, res) {
     fs.readFile( __dirname + "/" + "courses.json", 'utf8', function (err, data) {
        data = JSON.parse( data );
