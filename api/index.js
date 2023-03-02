@@ -20,6 +20,9 @@ app.get('/getCoursesInGroup/:id', async function(req, res) {
 app.post('/addCourse', async function (req, res) {
     const {error} = await supabase.from('Course').insert({year:req.body.year, semester:req.body.semester, teacher:req.body.teacher, group_id:req.body.group_id})
 })
+app.put('/updateCourse', async function (req, res) {
+    const {error} = await supabase.from('Course').update({year:req.body.year, semester:req.body.semester, teacher:req.body.teacher, group_id:req.body.group_id}).eq('id',req.body.id)
+})
 app.delete('/deleteCourse/:id', async function (req, res) {
     const {error} = await supabase.from('Course').delete().eq('id',req.params.id)
 })
@@ -33,6 +36,9 @@ app.get('/getCourseGroup/:id', async function(req, res) {
 })
 app.post('/addCourseGroup', async function (req, res) {
     const {error} = await supabase.from('Course Group').insert({name:req.body.name})
+})
+app.put('/updateCourseGroup', async function (req, res) {
+    const {error} = await supabase.from('Course Group').update({name:req.body.name}).eq('id',req.body.id)
 })
 app.delete('/deleteCourseGroup/:id', async function (req, res) {
     const {error} = await supabase.from('Course Group').delete().eq('id',req.params.id)
@@ -52,6 +58,9 @@ app.get('/getComment/:id', async function(req, res) {
 app.post('/addComment', async function (req, res) {
     const {error} = await supabase.from('Comment').insert({message:req.body.message, student_id:req.body.student_id, course_id:req.body.course_id, parent_id:req.body.parent_id})
 })
+app.put('/updateComment', async function (req, res) {
+    const {error} = await supabase.from('Comment').update({message:req.body.message, student_id:req.body.student_id, course_id:req.body.course_id, parent_id:req.body.parent_id}).eq('id',req.body.id)
+})
 app.delete('/deleteComment/:id', async function (req, res) {
     const {error} = await supabase.from('Comment').delete().eq('id',req.params.id)
 })
@@ -65,6 +74,9 @@ app.get('/getRating/:id', async function(req, res) {
 })
 app.post('/addRating', async function (req, res) {
     const {error} = await supabase.from('Rating').insert({course_id:req.body.course_id, rating:req.body.rating, student_id:req.body.student_id})
+})
+app.put('/updateRating', async function (req, res) {
+    const {error} = await supabase.from('Rating').update({course_id:req.body.course_id, rating:req.body.rating, student_id:req.body.student_id}).eq('id',req.body.id)
 })
 app.delete('/deleteRating/:id', async function (req, res) {
     const {error} = await supabase.from('Rating').delete().eq('id',req.params.id)
