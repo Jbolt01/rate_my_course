@@ -1,5 +1,4 @@
 import express from "express";
-import fs from "fs";
 import dotenv from 'dotenv';
 dotenv.config()
 var app = express();
@@ -12,7 +11,7 @@ app.get('/listCourses', async function(req, res) {
 app.get('/getCourse/:id', async function(req, res) {
     const {data, error} = await supabase.from('Course').select().eq('id',req.params.id)
     res.end(JSON.stringify(data))
-})
+})  
 app.get('/getCoursesInGroup/:id', async function(req, res) {
     const {data, error} = await supabase.from('Course').select().eq('group_id',req.params.id)
     res.end(JSON.stringify(data))
@@ -20,11 +19,12 @@ app.get('/getCoursesInGroup/:id', async function(req, res) {
 app.post('/addCourse', async function (req, res) {
     const {error} = await supabase.from('Course').insert({year:req.body.year, semester:req.body.semester, teacher:req.body.teacher, group_id:req.body.group_id})
 })
-app.put('/updateCourse', async function (req, res) {
+app.put('/updateCourse', async function      (req, res) {
     const {error} = await supabase.from('Course').update({year:req.body.year, semester:req.body.semester, teacher:req.body.teacher, group_id:req.body.group_id}).eq('id',req.body.id)
 })
 app.delete('/deleteCourse/:id', async function (req, res) {
     const {error} = await supabase.from('Course').delete().eq('id',req.params.id)
+    res.end(req.params.id)
 })
 app.get('/listCourseGroups', async function(req, res) {
     const { data, error1 } = await supabase.from('Course Group').select()
