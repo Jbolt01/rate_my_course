@@ -12,6 +12,10 @@ app.get('/getCourse/:id', async function(req, res) {
     const {data, error} = await supabase.from('Course').select().eq('id',req.params.id)
     res.end(JSON.stringify(data))
 })  
+app.get('/searchCourses/:str', async function (req, res) {
+    const {data, error} = await supabase.from('Course Group').select().ilike('name', '%' + req.params.str + '%')
+    res.end(JSON.stringify(data))
+})
 app.get('/getCoursesInGroup/:id', async function(req, res) {
     const {data, error} = await supabase.from('Course').select().eq('group_id',req.params.id)
     res.end(JSON.stringify(data))
@@ -42,6 +46,24 @@ app.put('/updateCourseGroup', async function (req, res) {
 })
 app.delete('/deleteCourseGroup/:id', async function (req, res) {
     const {error} = await supabase.from('Course Group').delete().eq('id',req.params.id)
+})
+app.get('/listTags', async function(req, res) {
+    const {data, error} = await supabase.from('Tags').select()
+    res.end(JSON.stringify(data))
+})
+app.get('/getTag/:id', async function(req, res) {
+    const {data, error} = await supabase.from('Tags').select().eq('id',req.params.id)
+    res.end(JSON.stringify(data))
+})
+app.get('/getCoursesWithTag/:id', async function(req, res) {
+    const {data, error} = await supabase.from('Course Tags').select().eq('tag id',req.params.id)
+    res.end(JSON.stringify(data))
+})
+app.post('/addTag', async function(req, res) {
+    const {data, error} = await supabase.from('Tags').insert({name:req.body.name})
+})
+app.post('/addTagToCourse', async function(req, res) {
+    const {data, error} = await supabase.from('Course Tags').insert({group_id:req.body.group_id, tag_id:req.body.tag_id})
 })
 app.get('/listAllComments', async function(req, res) {
     const { data, error1 } = await supabase.from('Comment').select()
