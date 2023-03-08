@@ -56,8 +56,19 @@ app.get('/getTag/:id', async function(req, res) {
     res.end(JSON.stringify(data))
 })
 app.get('/getCoursesWithTag/:id', async function(req, res) {
-    const {data, error} = await supabase.from('Course Tags').select().eq('tag id',req.params.id)
-    res.end(JSON.stringify(data))
+    var {data, error} = await supabase.from('Course Tags').select().eq('tag_id',req.params.id)
+    var oldData = JSON.parse(JSON.stringify(data))
+    var courseData = []
+    if(oldData != null) {
+        for(var i=0;i<oldData.length;i++) {
+            var {data, error} = await supabase.from('Course Group').select().eq('id',parseInt(oldData[i].group_id))
+            var data2 = JSON.parse(JSON.stringify(data))
+            if(data2 != null) {
+                courseData.push(data2[0])
+            }
+        }
+        res.end(JSON.stringify(courseData))
+    }
 })
 app.post('/addTag', async function(req, res) {
     const {data, error} = await supabase.from('Tags').insert({name:req.body.name})
