@@ -55,8 +55,14 @@ app.get('/getTag/:id', async function(req, res) {
     const {data, error} = await supabase.from('Tags').select().eq('id',req.params.id)
     res.end(JSON.stringify(data))
 })
-app.get('/getCoursesWithTag/:id', async function(req, res) {
-    var {data, error} = await supabase.from('Course Tags').select().eq('tag_id',req.params.id)
+app.get('/getCoursesWithTagName/:name', async function(req, res) {
+    var {data, error}= await supabase.from('Tags').select().eq('name', req.params.name)
+    if(data.length == 0) {
+        res.end('No tag found')
+        return
+    }
+    var id = data[0].id
+    var {data, error} = await supabase.from('Course Tags').select().eq('tag_id',id)
     var oldData = JSON.parse(JSON.stringify(data))
     var courseData = []
     if(oldData != null) {
@@ -69,12 +75,38 @@ app.get('/getCoursesWithTag/:id', async function(req, res) {
         }
         res.end(JSON.stringify(courseData))
     }
+    else {
+        res.end('No courses found with tag')
+    }
+})
+app.get('/getCoursesWithTag/:id', async function(req, res) {
+    var id = req.params.id
+    var {data, error} = await supabase.from('Course Tags').select().eq('tag_id',id)
+    var oldData = JSON.parse(JSON.stringify(data))
+    var courseData = []
+    if(data != null) {
+        if(oldData.length == 0) {
+            res.end('No courses found with tag')
+            return
+        }
+        for(var i=0;i<oldData.length;i++) {
+            var {data, error} = await supabase.from('Course Group').select().eq('id',parseInt(oldData[i].group_id))
+            var data2 = JSON.parse(JSON.stringify(data))
+            if(data2 != null) {
+                courseData.push(data2[0])
+            }
+        }
+        res.end(JSON.stringify(courseData))
+    }
+    else {
+        res.end('Tag ID must be an integer')
+    }
 })
 app.post('/addTag', async function(req, res) {
     const {data, error} = await supabase.from('Tags').insert({name:req.body.name})
 })
 app.post('/addTagToCourse', async function(req, res) {
-    const {data, error} = await supabase.from('Course Tags').insert({group_id:req.body.group_id, tag_id:req.body.tag_id})
+    var {data, error} = await supabase.from('Course Tags').insert({group_id:req.body.group_id, tag_id:req.body.tag_id})
 })
 app.get('/listAllComments', async function(req, res) {
     const { data, error1 } = await supabase.from('Comment').select()
@@ -106,7 +138,18 @@ app.get('/getRating/:id', async function(req, res) {
     res.end(JSON.stringify(data))
 })
 app.post('/addRating', async function (req, res) {
-    const {error} = await supabase.from('Rating').insert({course_id:req.body.course_id, rating:req.body.rating, student_id:req.body.student_id})
+    var {data, error} = await supabase.from('Rating').select().eq('course_id', req.body.course_id).eq('student_id', req.body.student_id)
+    if(data.length != 0) {
+        return
+    }
+    var {error} = await supabase.from('Rating').insert({course_id:req.body.course_id, rating:req.body.rating, student_id:req.body.student_id})
+    var {data, error} = await supabase.from('Course').select().eq('id', req.body.course_id)
+    var numRatings = data[0].num_ratings
+    var groupId = data[0].group_id
+    var {error} = await supabase.from('Course').update({num_ratings:numRatings + 1})
+    var {data, error} = await supabase.from('Course Group').select('num_ratings').eq('id', groupId)
+    numRatings = data[0]
+    var {error} = await supabase.from('Course Group').update({num_ratings:numRatings + 1})
 })
 app.put('/updateRating', async function (req, res) {
     const {error} = await supabase.from('Rating').update({course_id:req.body.course_id, rating:req.body.rating, student_id:req.body.student_id}).eq('id',req.body.id)
