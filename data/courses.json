@@ -1,0 +1,83 @@
+[
+    {
+      "id": 1,
+      "name": "Algebra I",
+      "subject": "Math",
+      "description": "Introduction to algebraic concepts and skills, including variables, expressions, equations, and inequalities.",
+      "image": "https://via.placeholder.com/400x250.png?text=Algebra%20I",
+      "rating": 4.5,
+      "reviews": [
+        {
+          "id": 1,
+          "rating": 5,
+          "comment": "This class was amazing! The teacher was really helpful and made the material easy to understand."
+        },
+        {
+          "id": 2,
+          "rating": 4,
+          "comment": "I learned a lot in this class, but sometimes the teacher went too fast."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Biology",
+      "subject": "Science",
+      "description": "Study of living organisms and their interactions with each other and their environment.",
+      "image": "https://via.placeholder.com/400x250.png?text=Biology",
+      "rating": 3.8,
+      "reviews": [
+        {
+          "id": 3,
+          "rating": 3,
+          "comment": "The material was interesting, but the teacher didn't explain things very well."
+        },
+        {
+          "id": 4,
+          "rating": 4,
+          "comment": "I enjoyed this class, especially the labs. The teacher was knowledgeable and approachable."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "English Literature",
+      "subject": "English",
+      "description": "Exploration of classic and contemporary works of literature, including novels, poetry, and drama.",
+      "image": "https://via.placeholder.com/400x250.png?text=English%20Literature",
+      "rating": 4.2,
+      "reviews": [
+        {
+          "id": 5,
+          "rating": 5,
+          "comment": "I loved this class! The teacher was passionate about the material and really brought the books to life."
+        },
+        {
+          "id": 6,
+          "rating": 3,
+          "comment": "Some of the books we read were boring, but the discussions in class were interesting."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "US History",
+      "subject": "Social Studies",
+      "description": "Survey of American history from colonial times to the present, including political, social, and cultural developments.",
+      "image": "https://via.placeholder.com/400x250.png?text=US%20History",
+      "rating": 4.0,
+      "reviews": [
+        {
+          "id": 7,
+          "rating": 4,
+          "comment": "I learned a lot in this class, but sometimes the teacher's lectures were a bit dry."
+        },
+        {
+          "id": 8,
+          "rating": 4,
+          "comment": "The teacher was knowledgeable and engaged us in discussions. I enjoyed this class overall."
+        }
+      ]
+    }
+  ]
+  
