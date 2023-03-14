@@ -17,10 +17,10 @@ const HomePage = () => {
   return (
     <>
       <Head>
-        <title>Montgomery Blair High School Course Reviews</title>
+        <title>BlazerRater</title>
         <meta
           name="description"
-          content="Find and review courses at Montgomery Blair High School."
+          content="Find out what the best courses at Blair are."
         />
       </Head>
 
@@ -28,10 +28,10 @@ const HomePage = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="min-h-screen flex flex-col justify-center items-center"
+        className="min-h-screen flex flex-col justify-center items-center bg-blue-200"
       >
         <h1 className="text-5xl md:text-7xl font-bold mb-8 text-center">
-          Montgomery Blair High School Course Reviews
+          BlazerRater
         </h1>
         <Link href="/courses">
           <p className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-md shadow-lg transition duration-300 ease-in-out mb-4">
@@ -48,7 +48,7 @@ const HomePage = () => {
                 transition={{ duration: 0.5 }}
                 className="bg-white shadow-md rounded-md p-6 flex flex-col items-center"
               >
-                <div className="bg-gray-200 w-12 h-12 rounded-full flex justify-center items-center mb-4">
+                <div className="bg-gray-300 w-12 h-12 rounded-full flex justify-center items-center mb-4">
                   <HiOutlineClipboardList className="text-gray-500 w-8 h-8" />
                 </div>
                 <h2 className="text-xl font-bold mb-2 text-black">{course.name}</h2>

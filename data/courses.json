@@ -4,17 +4,21 @@
       "name": "Algebra I",
       "subject": "Math",
       "description": "Introduction to algebraic concepts and skills, including variables, expressions, equations, and inequalities.",
-      "image": "https://via.placeholder.com/400x250.png?text=Algebra%20I",
+      "image": "banana.jpeg",
       "rating": 4.5,
       "reviews": [
         {
           "id": 1,
+          "teacher": "William Rose",
           "rating": 5,
+          "date": "1/1/23",
           "comment": "This class was amazing! The teacher was really helpful and made the material easy to understand."
         },
         {
           "id": 2,
+          "teacher": "Jeremy Schwartz",
           "rating": 4,
+          "date": "1/1/22",
           "comment": "I learned a lot in this class, but sometimes the teacher went too fast."
         }
       ]
@@ -24,7 +28,7 @@
       "name": "Biology",
       "subject": "Science",
       "description": "Study of living organisms and their interactions with each other and their environment.",
-      "image": "https://via.placeholder.com/400x250.png?text=Biology",
+      "image": "banana.jpeg",
       "rating": 3.8,
       "reviews": [
         {
@@ -44,7 +48,7 @@
       "name": "English Literature",
       "subject": "English",
       "description": "Exploration of classic and contemporary works of literature, including novels, poetry, and drama.",
-      "image": "https://via.placeholder.com/400x250.png?text=English%20Literature",
+      "image": "banana.jpeg",
       "rating": 4.2,
       "reviews": [
         {
@@ -64,7 +68,7 @@
       "name": "US History",
       "subject": "Social Studies",
       "description": "Survey of American history from colonial times to the present, including political, social, and cultural developments.",
-      "image": "https://via.placeholder.com/400x250.png?text=US%20History",
+      "image": "banana.jpeg",
       "rating": 4.0,
       "reviews": [
         {

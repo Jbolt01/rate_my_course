@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { MdStar } from 'react-icons/md'
+import Link from 'next/link';
 import courses from '../../data/courses.json'
 // import Image from 'next/image'
 import { motion } from 'framer-motion'
@@ -53,15 +54,23 @@ const CourseDetail = () => {
         ) : (
           course.reviews.map((review) => (
             <div key={review.id} className="bg-white shadow-lg rounded-lg px-4 py-2 mt-4">
+              <b><p className="text-gray-700 mt-2">{"Teacher: " + review.teacher}</p></b>
               <div className="flex items-center">
                 <MdStar className="text-yellow-500 w-6 h-6 mr-1" />
                 <span className="text-gray-600">{review.rating.toFixed(1)}</span>
               </div>
               <p className="text-gray-700 mt-2">{review.comment}</p>
+              <p className="text-gray-700 mt-2 text-xs">{review.date}</p>
             </div>
           ))
         )}
       </div>
+      <br></br>
+      <Link href="/courses">
+          <p className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-md shadow-lg transition duration-300 ease-in-out mb-4">
+            Add Rating
+          </p>
+      </Link>
     </motion.div>
   )
 }
