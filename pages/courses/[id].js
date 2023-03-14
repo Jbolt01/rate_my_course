@@ -66,7 +66,7 @@ const CourseDetail = () => {
         )}
       </div>
       <br></br>
-      <Link href="/courses">
+      <Link href="/newReview">
           <p className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-md shadow-lg transition duration-300 ease-in-out mb-4">
             Add Rating
           </p>
