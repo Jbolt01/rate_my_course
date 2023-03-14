@@ -47,6 +47,11 @@ const CourseDetail = () => {
           <p className="text-white-700 mt-4">{course.description}</p>
         </div>
       </div>
+      <Link href="/newReview">
+          <p className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-md shadow-lg transition duration-300 ease-in-out mb-4">
+            Review this course
+          </p>
+      </Link>
       <div className="mt-8">
         <h2 className="text-xl font-bold text-white-900">Reviews</h2>
         {course.reviews.length === 0 ? (
@@ -66,11 +71,7 @@ const CourseDetail = () => {
         )}
       </div>
       <br></br>
-      <Link href="/newReview">
-          <p className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-md shadow-lg transition duration-300 ease-in-out mb-4">
-            Add Rating
-          </p>
-      </Link>
+      
     </motion.div>
   )
 }
