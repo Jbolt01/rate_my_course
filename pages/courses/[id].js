@@ -47,6 +47,7 @@ const CourseDetail = () => {
           <p className="text-white-700 mt-4">{course.description}</p>
         </div>
       </div>
+      
       <div className="mt-8">
         <h2 className="text-xl font-bold text-white-900">Reviews</h2>
         {course.reviews.length === 0 ? (
